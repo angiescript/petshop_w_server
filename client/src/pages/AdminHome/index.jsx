@@ -4,57 +4,68 @@ import styles from "./index.module.scss";
 
 const AdminHome = () => {
   const [allPets, setAllPets] = useState([]);
-  const [status, setStatus] = useState("available");
-
-  const fetchPets = async (currentStatus) => {
+ 
+  const fetchPets = async () => {
     try {
-      const result = await axios(
-        "https://petstore3.swagger.io/api/v3/pet/findByStatus",
+      const result = await axios (
+        "http://localhost:5000/pets",
         {
-          params: {
-            status: currentStatus,
-          },
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
         }
       );
-      console.log(result);
+
+      console.log(result.data);
       return setAllPets(result.data);
+
     } catch (err) {
       console.error(err.message);
     }
   };
 
+  /* useEffect(() => {
+    // POST request using axios inside useEffect React hook
+    const article = { title: 'React Hooks POST Request Example' };
+    axios.post('https://reqres.in/api/articles', article)
+        .then(response => setArticleId(response.data.id));
+
+// empty dependency array means this effect will only run once (like componentDidMount in classes)
+}, []);
+ */
   useEffect(() => {
-    fetchPets(status);
-  }, [status]);
+    fetchPets();
+  }, []);
 
   return (
     <div>
-      {console.log(allPets)}
       <h2>Admin Home Page</h2>
       <div className={styles.wrapper}>
-        <div className={styles.tableView}> 
+        <div className={styles.tableView}>
           <table>
             <thead>
               <tr>
                 <th>Image</th>
-                <th>Title</th>
+                <th>Name</th>
                 <th>Animal type</th>
                 <th>Price</th>
                 <th>Status</th>
-                <th>Views</th>
                 <th>Posted</th>
               </tr>
             </thead>
-            <tobdy>
-              {allPets.map((pet, index) => {
-                return(
-                  <tr key={index}>
-                    <td>{pet.name}</td>
-                    <td>2000</td>
-                  </tr>
-                )
-              })}
-            </tobdy>
+            <tbody>
+              { allPets.map((pet, index) => {
+                  return (
+                    <tr key={index}>
+                      <td>{pet.img_url}</td>
+                      <td>{pet.pet_name}</td>
+                      <td>{pet.animal}</td>
+                      <td>{pet.price}</td>
+                      <td>{pet.purchase_status}</td>
+                      <td>Posted</td>
+                    </tr>
+                  );
+                })}
+            </tbody>
           </table>
         </div>
       </div>
