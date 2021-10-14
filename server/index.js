@@ -210,7 +210,7 @@ app.post("/orders/:id/orderrow/", async (req, res) => {
     const { pet_id } = req.body;
 
     const newOrderrow = await pool.query(
-      "INSERT INTO Order_rows(order_id, pet_name) VALUES($1, $2) RETURNING *",
+      "INSERT INTO Order_rows(order_id, pet_id) VALUES($1, $2) RETURNING *",
       [id, pet_id]
     );
 
@@ -385,6 +385,19 @@ app.put("/pets/:id/", async (req, res) => {
 });
 
 //delete a pet
+app.delete("/pets/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletePet = await pool.query(
+      "DELETE FROM Pets WHERE pet_id = $1",
+      [id]
+    );
+
+    res.json("Pet was deleted.");
+  } catch (err) {
+    console.log(err.message);
+  }
+});
 
 app.listen(5000, () => {
   console.log("Server has started on port 5000");
