@@ -1,0 +1,11 @@
+@import "../../../assets/app.global.scss";
+
+.tableView {
+    background: lightgrey;
+
+    table {
+        padding: 1rem;
+        width: 100%;
+        text-align: left;
+    }
+}

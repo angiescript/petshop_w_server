@@ -1,9 +1,5 @@
-.tableView {
-    background: lightgrey;
+@import "../../assets/app.global.scss";
 
-    table {
-        padding: 1rem;
-        width: 100%;
-        text-align: left;
-    }
+.fullPage {
+    background-color: #D8E6FF;
 }
