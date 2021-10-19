@@ -1,5 +1,16 @@
 @import "../../assets/app.global.scss";
 
-.fullPage {
-    background-color: #D8E6FF;
+
+.flexContainer {
+    background-color: $blue100;
+    display: flex;
+    height: 100vh;
+    border: 2px solid blue;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid green;
+    width: 100%;
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import styles from "./index.module.scss"
+import styles from "./index.module.scss";
 import AdminTable from "../../components/TableComponents/AdminTable";
 import AdminNavbar from "../../components/Navbars/AdminNavbar";
 
@@ -36,10 +36,12 @@ const AdminHome = () => {
    */
 
   return (
-    <div className={styles.fullPage}>
+    <div className={styles.flexContainer}>
       <AdminNavbar />
-      <h2>Admin Home Page</h2>
-      {allPets.length > 0 && <AdminTable allPets={allPets} />}
+      <div className={styles.main}>
+        <h2>Pets for sale</h2>
+        {allPets.length > 0 && <AdminTable allPets={allPets} />}
+      </div>
     </div>
   );
 };
