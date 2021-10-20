@@ -54,7 +54,35 @@ const AdminTable = ({ allPets }) => {
 
   return (
     <>
-      <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
+      <div className={styles.filteringOptions}>
+        <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
+        <div>
+          <span>
+            Page{" "}
+            <strong>
+              {pageIndex + 1} of {pageOptions.length}
+            </strong>{" "}
+          </span>
+          <select
+            value={pageSize}
+            onChange={(e) => setPageSize(Number(e.target.value))}
+          >
+            {[1, 2, 10, 20, 30].map((pageSize) => (
+              <option key={pageSize} value={pageSize}>
+                {pageSize} per page
+              </option>
+            ))}
+          </select>
+
+          <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+            Previous
+          </button>
+          <button onClick={() => nextPage()} disabled={!canNextPage}>
+            Next
+          </button>
+        </div>
+      </div>
+
       <div className={styles.tableView}>
         <table {...getTableProps()}>
           <thead>
@@ -91,31 +119,6 @@ const AdminTable = ({ allPets }) => {
             })}
           </tbody>
         </table>
-        <div>
-          <span>
-            Page{" "}
-            <strong>
-              {pageIndex + 1} of {pageOptions.length}
-            </strong>{" "}
-          </span>
-          <select
-            value={pageSize}
-            onChange={(e) => setPageSize(Number(e.target.value))}
-          >
-            {[1, 2, 10, 20, 30].map((pageSize) => (
-              <option key={pageSize} value={pageSize}>
-                {pageSize} per page
-              </option>
-            ))}
-          </select>
-
-          <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-            Previous
-          </button>
-          <button onClick={() => nextPage()} disabled={!canNextPage}>
-            Next
-          </button>
-        </div>
       </div>
     </>
   );

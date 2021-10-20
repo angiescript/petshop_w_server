@@ -1,11 +1,41 @@
 @import "../../../assets/_mixins.scss";
 
+.filteringOptions {
+    border: 1px solid red;
+    display: flex;
+}
 .tableView {
-    background: lightgrey;
+  width: 100%;
 
-    table {
-        padding: 1rem;
-        width: 100%;
-        text-align: left;
+  table {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+    font-size: small;
+    color: $grey500;
+
+    thead {
+      background: $blue100;
+      display: table-header-group;
+
+      th {
+        height: 3rem;
+        border-top: 1px solid $grey100;
+        border-bottom: 1px solid $grey100;
+        padding-left: 1rem;
+      }
     }
+
+    tbody {
+      td {
+        height: 3rem;
+        padding-left: 1rem;
+        border-bottom: 1px solid $grey100;
+      }
+
+      img {
+          border-radius: 50%;
+      }
+    }
+  }
 }
