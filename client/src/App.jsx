@@ -1,5 +1,6 @@
 import Main from "./Main";
 import { BrowserRouter as Router } from "react-router-dom";
+import "./app.scss"
 
 function App() {
   return (
