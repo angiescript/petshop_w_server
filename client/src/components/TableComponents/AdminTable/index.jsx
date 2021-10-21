@@ -6,12 +6,14 @@ import {
   usePagination,
 } from "react-table";
 import styles from "./index.module.scss";
+import { ReactComponent as ArrowRight } from "../../../assets/icons/arrow_right_black.svg";
 
 import { COLUMNS } from "../Columns";
 import GlobalFilter from "../GlobalFilter";
 
 const AdminTable = ({ allPets }) => {
   const columns = useMemo(() => COLUMNS, []);
+  // eslint-disable-next-line
   const data = useMemo(() => allPets, []);
 
   //Om data inkluderar datumfält och det är formatterat som en string:
@@ -56,30 +58,35 @@ const AdminTable = ({ allPets }) => {
     <>
       <div className={styles.filteringOptions}>
         <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
-        <div>
-          <span>
-            Page{" "}
-            <strong>
-              {pageIndex + 1} of {pageOptions.length}
-            </strong>{" "}
-          </span>
-          <select
-            value={pageSize}
-            onChange={(e) => setPageSize(Number(e.target.value))}
-          >
-            {[1, 2, 10, 20, 30].map((pageSize) => (
-              <option key={pageSize} value={pageSize}>
-                {pageSize} per page
-              </option>
-            ))}
-          </select>
 
-          <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-            Previous
-          </button>
-          <button onClick={() => nextPage()} disabled={!canNextPage}>
-            Next
-          </button>
+        <div className={styles.navigationAndSettings}>
+          <div className={styles.navigation}>
+            <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+              <ArrowRight className={styles.leftArrow}/>
+            </button>
+
+            <span className={styles.pageCount}>
+              {" "}
+              {pageIndex + 1} - {pageOptions.length}
+            </span>
+
+            <button onClick={() => nextPage()} disabled={!canNextPage}>
+              <ArrowRight />
+            </button>
+          </div>
+
+          <div className={styles.selectWrapper}>
+            <select
+              value={pageSize}
+              onChange={(e) => setPageSize(Number(e.target.value))}
+            >
+              {[1, 2, 10, 20, 30].map((pageSize) => (
+                <option key={pageSize} value={pageSize}>
+                  {pageSize} per page 
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
       </div>
 
@@ -111,7 +118,7 @@ const AdminTable = ({ allPets }) => {
                 <tr {...row.getRowProps()}>
                   {row.cells.map((cell) => {
                     return (
-                      <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                     <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
                     );
                   })}
                 </tr>

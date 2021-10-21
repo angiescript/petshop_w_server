@@ -1,0 +1,28 @@
+@import "../../../assets/_mixins.scss";
+
+.searchBar {
+    display: flex;
+    align-items: center;
+    border: 1px solid $grey300;
+    border-radius: 2rem;
+    height: 70%;
+
+    svg {
+        padding-left: 10px;
+        opacity: 0.5;
+    }
+
+    input {
+            margin-left: 1rem;
+            margin-right: 1rem;
+            border: none;    
+            font-size: 1rem; 
+            color: $grey400; 
+            
+            &:focus {
+                outline: none;
+            }
+    }
+
+
+}

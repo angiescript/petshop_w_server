@@ -23,7 +23,7 @@ const AdminHome = () => {
 
   useEffect(() => {
     fetchPets();
-  }, []);
+  }, [allPets]);
 
   /* useEffect(() => {
       // POST request using axios inside useEffect React hook

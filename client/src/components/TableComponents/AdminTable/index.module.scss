@@ -1,8 +1,67 @@
 @import "../../../assets/_mixins.scss";
 
 .filteringOptions {
-    border: 1px solid red;
+  /*   border: 1px solid red; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 2rem;
+  margin-bottom: 1rem;
+  margin-right: 2rem;
+  min-height: 4rem;
+
+  .navigationAndSettings {
     display: flex;
+    height: 70%;
+
+    .navigation {
+      display: flex;
+      align-items: center;
+      /*   border: 1px solid green; */
+      margin-right: 2rem;
+
+      .pageCount {
+        margin: 0 1rem;
+      }
+
+      button {
+        border: none;
+        background: none;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;  
+
+        .leftArrow {
+          -webkit-transform: scaleX(-1);
+          transform: scaleX(-1);
+        }
+      }
+    }
+
+    .selectWrapper {
+      display: flex;
+      align-items: center;
+      position: relative;
+
+      select {
+        width: 100%;
+        border: 1px solid $grey300;
+        border-radius: 2rem;
+        padding: 1rem;
+        overflow: hidden;
+        -webkit-appearance: none;
+        appearance: none;
+        text-overflow: ellipsis;
+        cursor: pointer;  
+
+        &:focus {
+          outline: none;
+        }
+
+     
+      }
+    }
+  }
 }
 .tableView {
   width: 100%;
@@ -11,7 +70,7 @@
     width: 100%;
     text-align: left;
     border-collapse: collapse;
-    font-size: small;
+    font-size: 0.9rem;
     color: $grey500;
 
     thead {
@@ -22,19 +81,19 @@
         height: 3rem;
         border-top: 1px solid $grey100;
         border-bottom: 1px solid $grey100;
-        padding-left: 1rem;
+        padding-left: 2rem;
       }
     }
 
     tbody {
       td {
         height: 3rem;
-        padding-left: 1rem;
+        padding-left: 2rem;
         border-bottom: 1px solid $grey100;
       }
 
       img {
-          border-radius: 50%;
+        border-radius: 50%;
       }
     }
   }

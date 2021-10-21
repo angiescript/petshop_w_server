@@ -18,9 +18,11 @@
     box-shadow: 0 4px 8px 0 rgba(39, 39, 39, 0.068), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
     h2 {
-        padding: 2rem;
+        padding-left: 2rem;
+        padding-top: 2rem;
+        margin-bottom: 1rem;
         font-weight: bold;
-        font-size: large;
+        font-size: 1rem;
         color: $grey400;
     }
 }

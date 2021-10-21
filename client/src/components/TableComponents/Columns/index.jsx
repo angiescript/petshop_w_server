@@ -9,7 +9,7 @@ export const COLUMNS = [
               src={tableProps.row.original.img_url}
               width={40}
               height={40}
-              alt='Pet Picture'
+              alt='Pet for sale'
             />
           )
     },
