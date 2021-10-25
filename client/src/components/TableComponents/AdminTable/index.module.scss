@@ -86,6 +86,10 @@
     }
 
     tbody {
+      tr {
+        cursor: pointer;
+      }
+
       td {
         height: 3rem;
         padding-left: 2rem;

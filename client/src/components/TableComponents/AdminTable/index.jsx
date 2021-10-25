@@ -11,7 +11,7 @@ import { ReactComponent as ArrowRight } from "../../../assets/icons/arrow_right_
 import { COLUMNS } from "../Columns";
 import GlobalFilter from "../GlobalFilter";
 
-const AdminTable = ({ allPets }) => {
+const AdminTable = ({ allPets, handleRowClick }) => {
   const columns = useMemo(() => COLUMNS, []);
   // eslint-disable-next-line
   const data = useMemo(() => allPets, []);
@@ -115,7 +115,7 @@ const AdminTable = ({ allPets }) => {
             {page.map((row) => {
               prepareRow(row);
               return (
-                <tr {...row.getRowProps()}>
+                <tr {...row.getRowProps()} onClick={() => handleRowClick(row.original.pet_id)}>
                   {row.cells.map((cell) => {
                     return (
                      <td {...cell.getCellProps()}>{cell.render("Cell")}</td>

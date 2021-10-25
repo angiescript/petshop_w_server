@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 import styles from "./index.module.scss";
 import AdminTable from "../../components/TableComponents/AdminTable";
@@ -7,6 +8,7 @@ import AdminNavbar from "../../components/Navbars/AdminNavbar";
 
 const AdminHome = () => {
   const [allPets, setAllPets] = useState([]);
+  const history = useHistory();
 
   const fetchPets = async () => {
     try {
@@ -21,11 +23,23 @@ const AdminHome = () => {
     }
   };
 
-  useEffect(() => {
-    fetchPets();
-  }, [allPets]);
+  const handleRowClick = (id) => {
+    history.push(`/admin/petProfile/${id}`);
+  };
 
-  /* useEffect(() => {
+  useEffect(() => {
+    let isMounted = true;
+    if (isMounted) {
+      fetchPets();
+    }
+
+    return () => {
+      isMounted = false;
+    };
+
+  }, []);
+
+ /* useEffect(() => {
       // POST request using axios inside useEffect React hook
       const article = { title: 'React Hooks POST Request Example' };
       axios.post('https://reqres.in/api/articles', article)
@@ -40,7 +54,9 @@ const AdminHome = () => {
       <AdminNavbar />
       <div className={styles.main}>
         <h2>Pets for sale</h2>
-        {allPets.length > 0 && <AdminTable allPets={allPets} />}
+        {allPets.length > 0 && (
+          <AdminTable allPets={allPets} handleRowClick={handleRowClick} />
+        )}
       </div>
     </div>
   );
