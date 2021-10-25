@@ -1,32 +1,32 @@
 @import "../../assets/_mixins.scss";
 
 .flexContainer {
-    display: flex;
+  display: flex;
 }
 
 .main {
-    background-color: white;
-    border-radius: 2rem 0 0 2rem;
-    display: flex;
-    flex-direction: column;
- /*    border: 2px solid green; */
-    width: 100%;
-    box-shadow: 0 4px 8px 0 rgba(39, 39, 39, 0.068), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
+  border-radius: 2rem 0 0 2rem;
+  display: flex;
+  flex-direction: column;
+  /*    border: 2px solid green; */
+  width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(39, 39, 39, 0.068),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
-    h2 {
-        padding-left: 2rem;
-        padding-top: 2rem;
-        margin-bottom: 1rem;
-        font-weight: bold;
-        font-size: 1rem;
-        color: $grey400;
+  h2 {
+    padding-left: 2rem;
+    padding-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    font-size: 1rem;
+    color: $grey400;
+  }
+
+  .petInfo {
+    img {
+      max-width: 10rem;
     }
-
-    .petInfo {
-        img {
-            max-width: 10rem;
-        }
-
-
-    }
+  }
 }
+

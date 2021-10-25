@@ -48,13 +48,6 @@ CREATE TABLE Pets (
     purchase_status VARCHAR(255)
 );
 
-/* CREATE TABLE Images (
-    img_id SERIAL PRIMARY KEY,
-    img_name VARCHAR(255),
-    pet_id INT,
-    FOREIGN KEY (pet_id) REFERENCES Pets (pet_id) ON DELETE CASCADE
-) */
-
 
 INSERT INTO Customers (full_name, email, billing_address, country, province, city, zip_code) VALUES ('Angelika Johansson', 'angelika.johansson@mail.com', 'Vejbyslattsvagen 23', 'Sweden', 'Skane', 'Vejbystrand', '26655');
 INSERT INTO Customers (full_name, email, billing_address, country, province, city, zip_code) VALUES ('Edvin Andersson', 'edvin.andersson@mail.com', 'Vejbyslattsvagen 23', 'Sweden', 'Skane', 'Vejbystrand', '26655');

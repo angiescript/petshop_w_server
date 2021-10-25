@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
+import Modal from 'react-modal';
 import axios from "axios";
 
 import AdminNavbar from "../../components/Navbars/AdminNavbar";
 import styles from "./index.module.scss";
 
+Modal.setAppElement('#root');
+
 const AdminPetProfile = () => {
   const [pet, setPet] = useState({});
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+ 
+  
   const { id } = useParams();
   const history = useHistory();
 
@@ -58,8 +64,14 @@ const AdminPetProfile = () => {
         }
       }
       updatePet(updatedPet);
-      //Lägg till en "your data was saved"-pop up?
-      history.push(`/admin/`);
+
+      setModalIsOpen(true);
+
+      setTimeout(() => {
+        setModalIsOpen(false);
+        history.push(`/admin/`);
+      }, 1500);
+  
     }
 
     //Om inget är ändrat, disable skicka
@@ -88,7 +100,6 @@ const AdminPetProfile = () => {
         <div className={styles.petInfo}>
           <div className={styles.petImage}>
             <img src={pet.img_url} alt={pet.pet_name} />
-            <form></form>
           </div>
 
           <div className={styles.petDetails}>
@@ -178,6 +189,9 @@ const AdminPetProfile = () => {
               <input type="submit" value="Send"></input>
             </form>
           </div>
+          <Modal isOpen={modalIsOpen} >
+            <h2>Your update has been saved successfully.</h2>
+          </Modal>
         </div>
       </div>
     </div>
