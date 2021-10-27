@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import Modal from 'react-modal';
+import Modal from "react-modal";
 import axios from "axios";
 
 import AdminNavbar from "../../components/Navbars/AdminNavbar";
 import styles from "./index.module.scss";
 
-Modal.setAppElement('#root');
+Modal.setAppElement("#root");
 
 const AdminPetProfile = () => {
   const [pet, setPet] = useState({});
   const [modalIsOpen, setModalIsOpen] = useState(false);
- 
-  
+  const [formHasChanged, setFormHasChanged] = useState(false);
+
   const { id } = useParams();
   const history = useHistory();
 
@@ -34,7 +34,17 @@ const AdminPetProfile = () => {
       await axios
         .put(`http://localhost:5000/pets/${id}`, updatedPet)
         .then((response) => {
+          console.log(response);
           setPet(response.data);
+
+          if (response.status === 200) {
+            setModalIsOpen(true);
+
+            setTimeout(() => {
+              setModalIsOpen(false);
+              history.push(`/admin/`);
+            }, 1500);
+          }
         });
     } catch (err) {
       console.error(err.message);
@@ -63,18 +73,15 @@ const AdminPetProfile = () => {
           updatedPet[pet_key] = pet[pet_key];
         }
       }
+
       updatePet(updatedPet);
-
-      setModalIsOpen(true);
-
-      setTimeout(() => {
-        setModalIsOpen(false);
-        history.push(`/admin/`);
-      }, 1500);
-  
     }
 
     //Om inget är ändrat, disable skicka
+  };
+
+  const handleFormChange = () => {
+    setFormHasChanged(true);
   };
 
   useEffect(() => {
@@ -93,9 +100,9 @@ const AdminPetProfile = () => {
       <AdminNavbar />
       <div className={styles.main}>
         <h2>Pets for sale</h2>
-        <p>
-          <span>Pets for sale /</span> {pet.pet_name}{" "}
-        </p>
+        <div className={styles.petIntroduction}>
+          <span>Pets for sale /</span> {pet.pet_name} <hr />
+        </div>
 
         <div className={styles.petInfo}>
           <div className={styles.petImage}>
@@ -103,7 +110,11 @@ const AdminPetProfile = () => {
           </div>
 
           <div className={styles.petDetails}>
-            <form id="petForm" onSubmit={(e) => handleSubmit(e)}>
+            <form
+              id="petForm"
+              onSubmit={(e) => handleSubmit(e)}
+              onChange={() => handleFormChange()}
+            >
               <fieldset>
                 <legend>Name</legend>
                 <label htmlFor="name"></label>
@@ -134,6 +145,18 @@ const AdminPetProfile = () => {
                   placeholder={pet.color}
                 ></input>
               </fieldset>
+
+              <fieldset>
+                <legend>Image URL</legend>
+                <label htmlFor="img_url"></label>
+                <input
+                  type="text"
+                  id="img_url"
+                  name="img_url"
+                  placeholder={pet.img_url}
+                ></input>
+              </fieldset>
+
               <div className={styles.smallInputs}>
                 <fieldset>
                   <legend>Breed</legend>
@@ -176,20 +199,42 @@ const AdminPetProfile = () => {
                   ></input>
                 </fieldset>
               </div>
-              <fieldset>
+              <fieldset className={styles.petDescription}>
                 <legend>Description</legend>
                 <label htmlFor="description"></label>
-                <input
+                <textarea
                   type="text"
                   id="description"
                   name="pet_description"
                   placeholder={pet.pet_description}
+                  rows="14"
+                  cols="60"
+                ></textarea>
+              </fieldset>
+              <fieldset className={styles.submitButton}>
+                <input
+                  type="submit"
+                  value="Update pet"
+                  className={
+                    formHasChanged
+                      ? `${styles.formHasChanged}`
+                      : `${styles.formHasNotChanged}`
+                  }
                 ></input>
               </fieldset>
-              <input type="submit" value="Send"></input>
             </form>
           </div>
-          <Modal isOpen={modalIsOpen} >
+          <Modal
+            isOpen={modalIsOpen}
+            style={{
+              content: {
+                width: "500px",
+                height: "100px",
+                margin: "auto",
+                backgroundColor: "#9AE6B4",
+              },
+            }}
+          >
             <h2>Your update has been saved successfully.</h2>
           </Modal>
         </div>

@@ -2,6 +2,7 @@
 
 .flexContainer {
   display: flex;
+  background-color: #F7FAFF;
 }
 
 .main {
@@ -9,24 +10,139 @@
   border-radius: 2rem 0 0 2rem;
   display: flex;
   flex-direction: column;
-  /*    border: 2px solid green; */
   width: 100%;
   box-shadow: 0 4px 8px 0 rgba(39, 39, 39, 0.068),
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
   h2 {
-    padding-left: 2rem;
     padding-top: 2rem;
+    padding-left: 2rem;
     margin-bottom: 1rem;
     font-weight: bold;
     font-size: 1rem;
     color: $grey400;
   }
 
+  .petIntroduction {
+    font-size: 0.8rem;
+
+    span {
+      color: $grey400;
+      padding-left: 2rem;
+    }
+
+    hr {
+      margin: 1rem 0;
+      width: 100%;
+      border: 0 none;
+      background-color: $grey200;
+      height: 1px;
+    }
+  }
+
   .petInfo {
+    padding-left: 2rem;
+    display: flex;
+
     img {
-      max-width: 10rem;
+      max-width: 15rem;
+      margin-right: 2rem;
+    }
+
+    .petDetails {
+      width: 50%;
+
+      fieldset {
+        margin: 1rem 0;
+        border: 1px solid $grey300;
+        border-radius: 2rem;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+
+        legend {
+          margin-left: 1rem;
+          font-size: 0.75rem;
+          color: $grey300;
+          padding: 0 4px;
+        }
+
+        input {
+          border: none;
+          margin-left: 1rem;
+          width: 93%;
+          font-size: 0.9rem;
+          color: $grey400;
+
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+
+      .smallInputs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        fieldset {
+          width: Max(200px, 48%);
+          margin-top: 0;
+
+          input {
+            width: 85%;
+          }
+        }
+      }
+
+      .petDescription {
+        height: fit-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        textarea {
+          resize: none;
+          border: none;
+          font-size: 0.9rem;
+          margin: 1rem;
+          height: 200px;
+          width: 93%;
+
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+
+      .submitButton {
+        background-color: $grey700;
+        width: 30%;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .formHasNotChanged {
+          pointer-events: none;
+          cursor: not-allowed;
+          opacity: 0.65;
+          -webkit-box-shadow: none;
+          box-shadow: none;
+          background-color: transparent;
+          margin: 0;
+          width: 93%;
+        }
+
+        .formHasChanged {
+          background-color: $grey700;
+          cursor: pointer;
+          font-size: 0.9rem;
+          color: white;
+          margin: 0;
+          width: 93%;
+        }
+      }
     }
   }
 }
-
