@@ -2,7 +2,7 @@
 
 .flexContainer {
   display: flex;
-  background-color: #F7FAFF;
+  background-color: #f7faff;
 }
 
 .main {
@@ -47,10 +47,18 @@
     img {
       max-width: 15rem;
       margin-right: 2rem;
+      border: 2px solid $grey100;
     }
 
     .petDetails {
       width: 50%;
+
+      .validation {
+        font-size: 0.7rem;
+        padding-left: 1rem;
+        margin-top: -0.7rem;
+        color: red;
+      }
 
       fieldset {
         margin: 1rem 0;
@@ -123,18 +131,7 @@
         align-items: center;
         justify-content: center;
 
-        .formHasNotChanged {
-          pointer-events: none;
-          cursor: not-allowed;
-          opacity: 0.65;
-          -webkit-box-shadow: none;
-          box-shadow: none;
-          background-color: transparent;
-          margin: 0;
-          width: 93%;
-        }
-
-        .formHasChanged {
+        input {
           background-color: $grey700;
           cursor: pointer;
           font-size: 0.9rem;

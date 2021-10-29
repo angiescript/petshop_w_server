@@ -15,11 +15,12 @@ const AdminNavbar = () => {
           <HomeBlack className={styles.navIcon} />
           View Site
         </NavLink>
-        <NavLink activeClassName={styles.navlinkActive} to="/admin">
+        <NavLink exact activeClassName={styles.navlinkActive} to="/admin">
           <ShoppingCartBlack className={styles.navIcon} />
           Pets for sale
         </NavLink>
-        <NavLink exact activeClassName={styles.navlinkActive} to="/addPet">
+        <NavLink exact activeClassName={styles.navlinkActive} to="/admin/addPet"
+       >
           <AddBlack className={styles.navIcon} />
           Add pet
         </NavLink>
