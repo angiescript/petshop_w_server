@@ -15,7 +15,13 @@ const AddPet = () => {
         .post(`http://localhost:5000/pets`, pet, {
           headers: { "content-type": "application/json" },
         })
-        .then(history.push(`/admin/`));
+        .then((response) => {
+          if (response.status !== 200) {
+            console.log("Something went wrong!");
+          } else {
+            history.push(`/admin/`);
+          }
+        });
     } catch (err) {
       console.error(err.message);
     }
@@ -28,12 +34,27 @@ const AddPet = () => {
     const body = {};
 
     for (let [key, value] of petData) {
-      if (key === "img_url") {
-        if (value === "") {
-          value =
-            "https://cdn.dribbble.com/users/1399069/screenshots/6783831/dog-adrienghenassia_still_2x.gif?compress=1&resize=400x300";
+      if (value === "") {
+        switch (key) {
+          case "age":
+            value = 0;
+            break;
+
+          case "price":
+            value = 0;
+            break;
+
+          case "img_url":
+            value =
+              "https://media.istockphoto.com/photos/happy-border-collie-dog-and-tabby-cat-together-closeup-picture-id1138523235?k=20&m=1138523235&s=612x612&w=0&h=K6lpiSJBvyqtghCESa9YsbKYrsvRJnS4Po0Jr8djuIw=";
+            break;
+
+          default:
+            value = "Unknown";
+            break;
         }
       }
+
       body[key] = value;
     }
 
