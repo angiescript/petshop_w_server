@@ -6,6 +6,7 @@ import styles from "./index.module.scss";
 
 const AddPet = () => {
   const [status, setStatus] = useState("");
+  const [imgUrl, setImgUrl] = useState("");
   const history = useHistory();
 
   const addPet = async (pet) => {
@@ -15,7 +16,6 @@ const AddPet = () => {
           headers: { "content-type": "application/json" },
         })
         .then(history.push(`/admin/`));
-
     } catch (err) {
       console.error(err.message);
     }
@@ -28,6 +28,12 @@ const AddPet = () => {
     const body = {};
 
     for (let [key, value] of petData) {
+      if (key === "img_url") {
+        if (value === "") {
+          value =
+            "https://cdn.dribbble.com/users/1399069/screenshots/6783831/dog-adrienghenassia_still_2x.gif?compress=1&resize=400x300";
+        }
+      }
       body[key] = value;
     }
 
@@ -40,16 +46,26 @@ const AddPet = () => {
     const name = e.target.value;
 
     if (name.trim() === "") {
-      return setStatus('Name is required');
+      return setStatus("Name is required");
     }
 
     if (name.trim().length < 3) {
-      return setStatus('Name needs to be at least three characters');
+      return setStatus("Name needs to be at least three characters");
     } else {
-      setStatus('');
+      setStatus("");
     }
 
     return null;
+  };
+
+  const handleImgUrl = (e) => {
+    const currentUrl = e.target.value;
+    setImgUrl(currentUrl);
+  };
+
+  const addDefaultPic = (e) => {
+    e.target.src =
+      "https://media.istockphoto.com/photos/happy-border-collie-dog-and-tabby-cat-together-closeup-picture-id1138523235?k=20&m=1138523235&s=612x612&w=0&h=K6lpiSJBvyqtghCESa9YsbKYrsvRJnS4Po0Jr8djuIw=";
   };
 
   return (
@@ -64,8 +80,9 @@ const AddPet = () => {
         <div className={styles.petInfo}>
           <div className={styles.petImage}>
             <img
-              src="https://media.istockphoto.com/photos/happy-border-collie-dog-and-tabby-cat-together-closeup-picture-id1138523235?k=20&m=1138523235&s=612x612&w=0&h=K6lpiSJBvyqtghCESa9YsbKYrsvRJnS4Po0Jr8djuIw="
-              alt="Placeholder"
+              src={imgUrl}
+              alt="Pet Placeholder"
+              onError={(e) => addDefaultPic(e)}
             />
           </div>
 
@@ -82,7 +99,11 @@ const AddPet = () => {
                   onChange={(e) => handleChange(e)}
                 ></input>
               </fieldset>
-              {status.length > 0 ? <p className={styles.validation}>{status}</p> : <p></p>}
+              {status.length > 0 ? (
+                <p className={styles.validation}>{status}</p>
+              ) : (
+                <p></p>
+              )}
               <fieldset>
                 <label htmlFor="tagline"></label>
                 <input
@@ -110,6 +131,8 @@ const AddPet = () => {
                   id="img_url"
                   name="img_url"
                   placeholder="Image URL"
+                  value={imgUrl}
+                  onChange={(e) => handleImgUrl(e)}
                 ></input>
               </fieldset>
 
