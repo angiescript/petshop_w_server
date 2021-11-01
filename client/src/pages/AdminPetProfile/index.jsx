@@ -10,6 +10,8 @@ Modal.setAppElement("#root");
 
 const AdminPetProfile = () => {
   const [pet, setPet] = useState({});
+  const [imgUrl, setImgUrl] = useState("");
+  const [photoHasChanged, setPhotoHasChanged] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [formHasChanged, setFormHasChanged] = useState(false);
 
@@ -76,12 +78,21 @@ const AdminPetProfile = () => {
 
       updatePet(updatedPet);
     }
-
-    //Om inget är ändrat, disable skicka
   };
 
   const handleFormChange = () => {
     setFormHasChanged(true);
+  };
+
+  const handlePhotoChange = (e) => {
+    setPhotoHasChanged(true);
+    const currentUrl = e.target.value;
+    setImgUrl(currentUrl);
+  };
+
+  const addDefaultPic = (e) => {
+    e.target.src =
+      "https://media.istockphoto.com/photos/happy-border-collie-dog-and-tabby-cat-together-closeup-picture-id1138523235?k=20&m=1138523235&s=612x612&w=0&h=K6lpiSJBvyqtghCESa9YsbKYrsvRJnS4Po0Jr8djuIw=";
   };
 
   useEffect(() => {
@@ -95,6 +106,10 @@ const AdminPetProfile = () => {
     };
   }, [id]);
 
+  /*   useEffect(() => {
+    setImgUrl(pet.img_url)
+  }, []) */
+
   return (
     <div className={styles.flexContainer}>
       <AdminNavbar />
@@ -106,7 +121,11 @@ const AdminPetProfile = () => {
 
         <div className={styles.petInfo}>
           <div className={styles.petImage}>
-            <img src={pet.img_url} alt={pet.pet_name} />
+            <img
+              src={photoHasChanged ? imgUrl : pet.img_url}
+              alt="Pet Placeholder"
+              onError={(e) => addDefaultPic(e)}
+            />
           </div>
 
           <div className={styles.petDetails}>
@@ -154,6 +173,8 @@ const AdminPetProfile = () => {
                   id="img_url"
                   name="img_url"
                   placeholder={pet.img_url}
+                  value={imgUrl}
+                  onChange={(e) => handlePhotoChange(e)}
                 ></input>
               </fieldset>
 
