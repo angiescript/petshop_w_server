@@ -1,1 +1,28 @@
 @import "../../assets/_mixins.scss";
+
+.storeHomeMain {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+    .storeContent {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        p {
+            color: $grey300;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        h2 {
+            color: $blue400;
+            font-family: $decoFont;
+            font-size: 4rem;
+            font-weight: 100;
+        }
+    }
+}

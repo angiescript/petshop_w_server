@@ -3,8 +3,13 @@ import styles from "./index.module.scss";
 
 const Navbar = () => {
     return (
-        <div>
-            <h2 className={styles.navbar}>This is a navbar!</h2>
+        <div class={styles.navigationWrapper}>
+            <div class={styles.navigationItems}>
+                <a href="#">Our animals</a>
+                <a href="#">Accessories</a>
+                <a href="#">About us</a>
+                <a href="#">Shopping cart</a>
+            </div>
         </div>
     )
 }
