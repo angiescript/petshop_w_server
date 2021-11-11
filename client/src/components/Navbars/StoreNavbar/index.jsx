@@ -5,10 +5,10 @@ const Navbar = () => {
     return (
         <div class={styles.navigationWrapper}>
             <div class={styles.navigationItems}>
-                <a href="#">Our animals</a>
-                <a href="#">Accessories</a>
-                <a href="#">About us</a>
-                <a href="#">Shopping cart</a>
+                <p>Our animals</p>
+                <p>Accessories</p>
+                <p>About us</p>
+                <p>Shopping cart</p>
             </div>
         </div>
     )

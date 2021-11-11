@@ -5,11 +5,11 @@ import dogGif from "../../assets/jayway-pet-store-splash-video-02.mp4";
 
 const StoreHome = () => {
   return (
-    <div>
+    <div className={styles.storeHome}>
       <StoreNavbar />
       <div className={styles.storeHomeMain}>
         <div className={styles.greetingVideo}>
-          <video src={dogGif} type="video/mp4" autoPlay loop muted />
+          <video src={dogGif} type="video/mp4" className={styles.dogVideo} autoPlay loop muted />
         </div>
         <div className={styles.storeContent}>
             <p>NEW STORE INCOMING - STAY TUNED</p>

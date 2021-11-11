@@ -1,25 +1,31 @@
 @import "../../../assets/_mixins.scss";
 
-.navigationWrapper{
-    position: sticky;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 10;
+.navigationWrapper {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+  min-height: 4rem;
+  background-color: white;
+  width: 100%;
+  padding-right: 2rem;
+
+  .navigationItems {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    font-family: "Roboto", sans-serif;
-    font-size: 1.5rem;
-    font-weight: 300;
-    min-height: 4rem;
-    background-color: white;
-    
-    a {
-        color: grey;
-        padding-left: 2rem;
-        text-decoration: none;
-        font-size: 1rem;
-        margin-right: 3rem;
+    width: 100%;
+
+    p {
+      color: grey;
+      padding-left: 2rem;
+      text-decoration: none;
+      font-size: 1rem;
+      margin: 2rem 0;
     }
-};
+  }
+}
