@@ -1,7 +1,6 @@
 @import "../../../assets/_mixins.scss";
 
 .filteringOptions {
-  /*   border: 1px solid red; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -17,7 +16,6 @@
     .navigation {
       display: flex;
       align-items: center;
-      /*   border: 1px solid green; */
       margin-right: 2rem;
 
       .pageCount {
@@ -29,7 +27,7 @@
         background: none;
         font-size: 1rem;
         font-weight: 700;
-        cursor: pointer;  
+        cursor: pointer;
 
         .leftArrow {
           -webkit-transform: scaleX(-1);
@@ -52,13 +50,11 @@
         -webkit-appearance: none;
         appearance: none;
         text-overflow: ellipsis;
-        cursor: pointer;  
+        cursor: pointer;
 
         &:focus {
           outline: none;
         }
-
-     
       }
     }
   }
@@ -88,8 +84,6 @@
     }
 
     tbody {
-      
-
       tr {
         cursor: pointer;
       }
@@ -104,24 +98,5 @@
         border-radius: 50%;
       }
     }
-  }
-
-  &::-webkit-scrollbar {
-    width: 20px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: transparent;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: $grey200;
-    border-radius: 20px;
-    border: 6px solid transparent;
-    background-clip: content-box;
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background-color: $grey300;
   }
 }
