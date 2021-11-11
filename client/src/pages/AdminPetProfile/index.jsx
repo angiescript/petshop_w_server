@@ -251,7 +251,7 @@ const AdminPetProfile = () => {
                 <fieldset className={styles.submitButton}>
                   <input
                     type="submit"
-                    value="Update pet"
+                    value="Update"
                     className={
                       formHasChanged
                         ? `${styles.formHasChanged}`
@@ -261,11 +261,11 @@ const AdminPetProfile = () => {
                 </fieldset>
                 <button
                   type="submit"
-                  value="Delete pet"
+                  value="Delete"
                   className={styles.deleteButton}
                   onClick={() => handleDelete()}
                 >
-                  Delete pet
+                  Delete
                 </button>
               </div>
             </form>
@@ -281,7 +281,7 @@ const AdminPetProfile = () => {
               },
             }}
           >
-            <h2>Operation successful.</h2>
+            <h2>Done!</h2>
           </Modal>
         </div>
       </div>

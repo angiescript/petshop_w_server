@@ -1,12 +1,18 @@
-import axios from "axios";
 import React, { useState } from "react";
 import { useHistory } from "react-router";
+import Modal from "react-modal";
+import axios from "axios";
+
 import AdminNavbar from "../../components/Navbars/AdminNavbar";
 import styles from "./index.module.scss";
+
+Modal.setAppElement("#root");
 
 const AddPet = () => {
   const [status, setStatus] = useState("");
   const [imgUrl, setImgUrl] = useState("");
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  
   const history = useHistory();
 
   const addPet = async (pet) => {
@@ -19,7 +25,12 @@ const AddPet = () => {
           if (response.status !== 200) {
             console.log("Something went wrong!");
           } else {
-            history.push(`/admin/`);
+            setModalIsOpen(true);
+
+            setTimeout(() => {
+              setModalIsOpen(false);
+              history.push(`/admin/`);
+            }, 1500);
           }
         });
     } catch (err) {
@@ -211,6 +222,19 @@ const AddPet = () => {
               </fieldset>
             </form>
           </div>
+          <Modal
+            isOpen={modalIsOpen}
+            style={{
+              content: {
+                width: "500px",
+                height: "100px",
+                margin: "auto",
+                backgroundColor: "#9AE6B4",
+              },
+            }}
+          >
+            <h2>Done!</h2>
+          </Modal>
         </div>
       </div>
     </div>
