@@ -90,6 +90,25 @@ const AdminPetProfile = () => {
     setImgUrl(currentUrl);
   };
 
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`http://localhost:5000/pets/${id}`).then((res) => {
+        if (res.status !== 200) {
+          console.log("Something went wrong!");
+        } else {
+          setModalIsOpen(true);
+
+          setTimeout(() => {
+            setModalIsOpen(false);
+            history.push(`/admin/`);
+          }, 1500);
+        }
+      });
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
   const addDefaultPic = (e) => {
     e.target.src =
       "https://media.istockphoto.com/photos/happy-border-collie-dog-and-tabby-cat-together-closeup-picture-id1138523235?k=20&m=1138523235&s=612x612&w=0&h=K6lpiSJBvyqtghCESa9YsbKYrsvRJnS4Po0Jr8djuIw=";
@@ -105,10 +124,6 @@ const AdminPetProfile = () => {
       isMounted = false;
     };
   }, [id]);
-
-  /*   useEffect(() => {
-    setImgUrl(pet.img_url)
-  }, []) */
 
   return (
     <div className={styles.flexContainer}>
@@ -232,17 +247,27 @@ const AdminPetProfile = () => {
                   cols="60"
                 ></textarea>
               </fieldset>
-              <fieldset className={styles.submitButton}>
-                <input
+              <div className={styles.buttonField}>
+                <fieldset className={styles.submitButton}>
+                  <input
+                    type="submit"
+                    value="Update pet"
+                    className={
+                      formHasChanged
+                        ? `${styles.formHasChanged}`
+                        : `${styles.formHasNotChanged}`
+                    }
+                  ></input>
+                </fieldset>
+                <button
                   type="submit"
-                  value="Update pet"
-                  className={
-                    formHasChanged
-                      ? `${styles.formHasChanged}`
-                      : `${styles.formHasNotChanged}`
-                  }
-                ></input>
-              </fieldset>
+                  value="Delete pet"
+                  className={styles.deleteButton}
+                  onClick={() => handleDelete()}
+                >
+                  Delete pet
+                </button>
+              </div>
             </form>
           </div>
           <Modal
@@ -256,7 +281,7 @@ const AdminPetProfile = () => {
               },
             }}
           >
-            <h2>Your update has been saved successfully.</h2>
+            <h2>Operation successful.</h2>
           </Modal>
         </div>
       </div>
