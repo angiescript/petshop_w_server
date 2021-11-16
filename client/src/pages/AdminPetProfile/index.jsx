@@ -5,6 +5,7 @@ import axios from "axios";
 
 import AdminNavbar from "../../components/Navbars/AdminNavbar";
 import styles from "./index.module.scss";
+import BackButton from "../../components/BackButton";
 
 Modal.setAppElement("#root");
 
@@ -282,7 +283,8 @@ const AdminPetProfile = () => {
             }}
           >
             <h2>Done!</h2>
-          </Modal>
+          </Modal> 
+          <BackButton />
         </div>
       </div>
     </div>

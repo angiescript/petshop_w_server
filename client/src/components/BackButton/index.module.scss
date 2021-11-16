@@ -1,0 +1,35 @@
+@import "../../assets/_mixins.scss";
+
+.backButtonWrapper {
+    position: absolute;
+    top: 7rem;
+    right: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .backButton {
+        padding: 0.4rem 0.5rem;
+        border-radius: 50%;
+        border: none;
+        background-color: $grey600;
+        color: white;
+        font-weight: 700;
+        font-size: 1rem;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $grey700;
+            padding: 0.45rem 0.6rem;
+        }
+        
+        svg {
+            fill: white;
+           /*  border: 1px solid red; */
+            padding-top: 0.2rem;
+        }
+
+       
+    }
+}
+
