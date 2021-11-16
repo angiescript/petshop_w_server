@@ -1,9 +1,15 @@
 @import "../../assets/_mixins.scss";
 
+.storeHome {
+  position: relative;
+}
 .storeHomeMain {
   display: flex;
   flex-direction: row;
   width: 100%;
+  min-height: 100vh;
+  position: absolute;
+  top: 0; 
 
   .greetingVideo {
     height: 100%;
